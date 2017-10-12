@@ -1,0 +1,11 @@
+{
+	"Host"	: "localhost",
+	"Db"	: "budget",
+	"User" 	: "cherrera",
+	"Pswd" 	: "cherrera_314",
+	"Dsn"	: "mysql:host=%s;dbname=%s",
+
+	"Query" : {
+		"TableExists" : "SELECT 1 FROM %s LIMIT 1"
+	}
+}

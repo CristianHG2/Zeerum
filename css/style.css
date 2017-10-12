@@ -1,0 +1,11 @@
+main
+{
+	width: 80%;
+	margin: 4% auto;
+}
+
+.login-form > h1
+{
+	margin-bottom: 30px;
+	font-style: italic;
+}
