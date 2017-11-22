@@ -31,8 +31,9 @@ class FormsClass
 
 					FC[Id].Data = new FormData(Dom[0]);
 
-					Http.Request(FC.RelativePath + Action, FC[Id].Data, FC[Id].OnSuccess, FC[Id].OnFail, Method, FC[Id].OnOutput);
+					Http.Request(FC.RelativePath + Action, FC[Id].Data, function(d){ FC[Id].OnSuccess(d); FC[Id].OnFinish(d); }, FC[Id].OnFail, Method, FC[Id].OnOutput);
 				},
+				OnFinish		: function(data) {},
 				OnSuccess 		: function(data)
 				{
 					Alert.Init(data);

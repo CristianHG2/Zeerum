@@ -4,6 +4,8 @@ namespace Zee;
 
 class Kernel
 {
+	static $SiteVars;
+	
 	static function AutoLoad($class)
 	{
 		$class = str_replace('\\', '/', $class);
@@ -53,6 +55,11 @@ class Kernel
 		debug_print_backtrace();
 	}
 
+	static function GetVar($var)
+	{
+		return self::$SiteVars[$var];
+	}
+
 	static function SendBuffer()
 	{
 		global $page;
@@ -61,7 +68,11 @@ class Kernel
 		{
 			$Buffer = new Output($page['id'], $page);
 
+			$Buffer->Vars['site_resources'] = 'https://cherrera.me/portfolio/pms/association';
+
 			$Buffer->Run();
+
+			self::$SiteVars = $Buffer->Vars;
 		}
 	}
 }

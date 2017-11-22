@@ -13,7 +13,7 @@ class AlertsClass
 
 		if ( typeof dismissTime === "undefined" )
 			dismissTime = 2000;
-		
+
 		alert.addClass('alert alert-' + classSuffix + ' globalAlert').text(text).prepend(button);
 		alert.animateCss('fadeIn');
 
@@ -27,7 +27,9 @@ class AlertsClass
 			});
 		});
 
-		$("body > .alertContainer > .inner").append(alert);
+		$('#mainAlert .modal-body').text('Server returned an unknown response.');
+		$('#mainAlert .modal-body').text(text.message);
+		$("#mainAlert").modal('toggle');
 
 		setTimeout(function()
 		{

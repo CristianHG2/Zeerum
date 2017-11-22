@@ -20,7 +20,7 @@ class Model
 
 		$this->Suffix = '';
 
-		$this->Table = $Table;
+		$this->Table = strtolower($Table);
 		$this->dbh = new \PDO($db->Format('Dsn', array('$Host', '$Db')), $db->User, $db->Pswd, array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION));
 	}
 
@@ -102,14 +102,13 @@ class Model
 	{
 		$table = explode('/', $table);
 		$table = $table[count($table) - 1];
+		$table = strtolower($table);
 
 		$db = Config('Database');
 
 		$dbh = new \PDO($db->Format('Dsn', array('$Host', '$Db')), $db->User, $db->Pswd);
 
 		$stmt = $dbh->prepare($db->Format('Query/TableExists', $table));
-
-		var_dump($db->Format('Query/TableExists', $table));
 
 		return $stmt->execute();	
 	}

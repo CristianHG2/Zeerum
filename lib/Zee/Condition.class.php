@@ -8,6 +8,8 @@ class Condition
 
 	public $wheres = array();
 
+	public $order = null;
+
 	public function __construct($stmts)
 	{
 		if ( !is_array($stmts) )
@@ -39,6 +41,14 @@ class Condition
 
 					$this->wheres[] = array($args[0], trim($args[1]));
 				break;
+				case 'o':
+					$args = explode(',', $matches[2]);
+
+					if ( count($args) !== 2 )
+						throw new Exception('Invalid argument count for statement '.$matches[0]);
+
+					$this->order = [$args[0], trim($args[1])];
+				break;
 			}
 		}
 	}
@@ -59,6 +69,11 @@ class Condition
 			$params[$key.'_'.$i[0]] = $i[1];
 		}
 
-		return array('WHERE '.implode(' AND ', $tempArr), $params);
+		$order = '';
+
+		if ( !is_null($this->order) )
+			$order = ' ORDER BY '.$this->order[0].' '.$this->order[1];
+
+		return array('WHERE '.implode(' AND ', $tempArr).$order, $params);
 	}
 }
