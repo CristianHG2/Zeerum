@@ -1,2 +1,3 @@
-# Zeerum
-Life management system (Base project for new framework)
+#Deprecated project
+
+Please go to https://github.com/CristianHG2/ZeeFramework
